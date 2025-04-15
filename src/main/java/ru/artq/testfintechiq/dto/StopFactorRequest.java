@@ -1,0 +1,13 @@
+package ru.artq.testfintechiq.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class StopFactorRequest {
+    private String regPersonString;
+    private String verifiedNameString;
+}

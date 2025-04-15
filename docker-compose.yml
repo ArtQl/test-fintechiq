@@ -1,0 +1,31 @@
+services:
+  app:
+    image: eclipse-temurin:17-jdk
+    container_name: test-fintechiq-app
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+    command: "./mvnw spring-boot:run"
+
+  db:
+    image: postgres:15-alpine
+    container_name: test-fintechiq-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: 

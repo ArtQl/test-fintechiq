@@ -2,5 +2,31 @@ spring:
   application:
     name: test-fintechiq
 
+  # Database settings
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+  
+  # JPA settings
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    # show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+# Server settings 
 server:
-  port: 8090
+  port: 8080
